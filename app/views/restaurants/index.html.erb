@@ -1,0 +1,15 @@
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Restaurants</span>
+    <%= link_to 'Add a restaurant', new_restaurant_path, class: 'btn btn-outline-success' %>
+  </div>
+</nav>
+
+
+<ul class="list-group">
+  <% @restaurants.each do |restaurant| %>
+    <li class="list-group-item" aria-current="true">
+        <%= link_to restaurant.name, restaurant_path(restaurant) %>
+    </li>
+  <% end %>
+</ul>

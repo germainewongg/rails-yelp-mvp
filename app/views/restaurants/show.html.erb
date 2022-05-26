@@ -1,0 +1,58 @@
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1"><%= link_to 'Restaurants', restaurants_path, class: 'btn btn-outline-secondary' %></span>
+
+  </div>
+</nav>
+
+<div class="d-flex p-4">
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone number</th>
+      <th>Category</th>
+    </tr>
+
+    <tr>
+      <td><%= @restaurant.name %></td>
+      <td><%= @restaurant.address %></td>
+      <td><%= @restaurant.phone_number %></td>
+      <td><%= @restaurant.category %></td>
+    </tr>
+  </table>
+</div>
+
+<%# Display reviews %>
+<div class="d-flex p-4 justify-content-center">
+  <% if @restaurant.reviews.length > 0 %>
+    <table class="table table-dark table-striped">
+      <tr>
+        <th>Reviews</th>
+        <th>Rating</th>
+      </tr>
+      <% @restaurant.reviews.each do |review| %>
+        <tr>
+          <td>
+            <%= review.content %>
+          </td>
+          <td>
+            <%= review.rating %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center">
+  <h1>Create a new review</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= simple_form_for([@restaurant, @review]) do |f| %>
+    <%= f.input :content  %>
+    <%= f.input :rating  %>
+    <%= f.submit %>
+  <% end %>
+</div>
